@@ -43,3 +43,5 @@ while not done:
 	print(obs, reward, done, info)
 	env.render()
 env.render()
+
+
