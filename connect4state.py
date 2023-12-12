@@ -3,12 +3,7 @@ import numpy as np
 class ConnectFourState:
 
     def __init__(self, board=None, current_player=1, last_move=None):
-		# Inizializza the state of the board
-        if board is None:
-            self.board = np.full((6, 7), 0, dtype=np.int8)
-        else:
-            self.board = board.copy()
-
+        self.board = np.full((6, 7), 0, dtype=np.int8) if board is None else board.copy()
         self.current_player = current_player
         self.last_move = last_move
 
@@ -35,14 +30,11 @@ class ConnectFourState:
 
 
     def get_result(self):
-        winner = self.check_winner()
-        if winner:
-            return 1 if winner == 1 else -1
-        return 0
+        return 1 if (winner := self.check_winner()) == 1 else -1 if winner else 0
 
 
     def check_winner(self, inrow=4):
-        target = np.array([self.current_player] * inrow)  # Search for 4 in a row of the current player
+        target = np.array([self.current_player] * inrow)    # Search for 4 inarow of the current player
         rows, cols = self.board.shape
 
         # Check rows
